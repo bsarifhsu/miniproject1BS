@@ -27,6 +27,27 @@ def getClosing(ticker):
         closing_list.append(round(price,2))
     return closing_list
 
-msft = getClosing("MSFT")
-print(msft)
+msftClosing = np.array(getClosing("MSFT"))
+days = list(range(1, len(msftClosing)+1))
+
+#It plots the graph
+plt.plot(msftClosing)
+
+#Get the min and max for Y axis
+prices = getClosing("MSFT")
+prices.sort()
+low_price = prices[0]
+high_price = prices[-1]
+
+#Set the X axis min and max
+#Form [xmin,xmax, ymin, ymax]
+plt.axis([10,1,low_price-2,high_price+2])
+
+#Set the labels for the graph
+plt.xlabel("Days Ago")
+plt.ylabel("Closing Price")
+plt.title("Closing Price for MSFT")
+
+#Display the graph
+plt.show()
 
