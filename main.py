@@ -7,7 +7,7 @@ import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Ticker for Apple is APPL
+# Ticker for Sony is SONY
 # Ticker for Microsoft is MSFT
 # Ticker for Adobe is ADBE
 # Ticker for Alphabet is GOOG
@@ -18,13 +18,15 @@ def getClosing(ticker):
     stock = yf.Ticker(ticker)
     hist = stock.history(period="10d")
 
+    #Empty list created and closing prices are added to it.
     closing_list = []
     for price in hist["Close"]:
-        closing_list.append(round(price,2))
+        closing_list.append(round(price, 2))
     return closing_list
 
 
 stocks = ["MSFT","SONY","ADBE","GOOG","NVDA"]
+#Looping through the stocks and generationg a plot for each
 for stock in stocks:
     stockClosing = np.array(getClosing(stock))
     days = list(range(1, len(stockClosing)+1))
