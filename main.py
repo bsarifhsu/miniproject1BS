@@ -6,6 +6,7 @@
 import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 # Ticker for Sony is SONY
 # Ticker for Microsoft is MSFT
@@ -23,6 +24,13 @@ def getClosing(ticker):
     for price in hist["Close"]:
         closing_list.append(round(price, 2))
     return closing_list
+
+# It creates the chart folder
+try:
+    #Create the charts folder
+    Path("charts").mkdir()
+except FileExistsError:
+    pass
 
 
 stocks = ["MSFT","SONY","ADBE","GOOG","NVDA"]
