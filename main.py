@@ -21,13 +21,6 @@ def getClosing(ticker):
 
 
 def generateGraph(stock):
-    # It creates the chart folder
-    try:
-        # Create the charts folder
-        Path("charts").mkdir()
-    except FileExistsError:
-        pass
-
     # Looping through the stocks and generating a plot for each
     stockClosing = np.array(getClosing(stock))
     days = list(range(1, len(stockClosing) + 1))
@@ -79,6 +72,13 @@ def getStocks():
     return stocks
 
 # Start of the program
+# It creates the chart folder
+try:
+    # Create the charts folder
+    Path("charts").mkdir()
+except FileExistsError:
+    pass
+
 for stock in getStocks():
     getClosing(stock)
     generateGraph(stock)
